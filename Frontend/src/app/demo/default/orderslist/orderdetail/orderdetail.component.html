@@ -1,0 +1,136 @@
+<div class="row">
+  <div class="col-md-12 col-xl-6">
+    <h5 class="mb-3"><b>THÔNG TIN ĐƠN HÀNG</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="employeeName">Nhân viên phụ trách:</label>
+          <label type="text" class="form-control" name="employeeName">{{order.Employee[0].employeeName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="orderTime">Thời điểm lập đơn hàng:</label>
+          <label type="text" class="form-control" name="orderTime">{{order.orderTime | date: 'dd/MM/yyyy hh:mm a'}}</label>
+        </div>
+        
+          @if(order.endTime !== null){
+            <div class="form-group">
+              <label class="form-label" for="orderTime">Thời điểm thanh toán:</label>
+            <label type="text" class="form-control" name="endTime">{{order.endTime | date: 'dd/MM/yyyy hh:mm a'}}</label>
+          </div>
+          }
+          
+        
+        <div class="form-group">
+          <label class="form-label" for="status">Trạng thái:</label>
+          <label type="text"   name="status">
+            <p class="text-danger">  {{order.status}}</p>             
+          </label>
+        </div>
+        @if(order.reason){
+          <div class="form-group">
+            <label class="form-label" >Lí do:</label>
+          <label type="text" class="form-control" name="reason">{{order.reason}}</label>
+        </div>
+        }
+        <div class="input-group" *ngIf="order.status === 'Chưa thanh toán'">
+          <div class="text-right" (click)="UpdateOrder(order._id)">
+            <a class="btn btn-flat btn-info" style="color: white;">
+              Thanh toán
+            </a>
+          </div>
+          <div style="margin-left: 20px;" class="text-left" (click)="openConfirmDeleteOrderDialog(order._id)">
+            <a class="btn btn-danger btn-info" style="color: white;">
+              Hủy đơn
+            </a>
+          </div>
+          
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-xl-6">
+    <h5 class="mb-3"><b>THÔNG TIN KHÁCH HÀNG</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="customerName">Tên khách hàng:</label>
+          <label type="text" class="form-control" name="customerName">{{order.customerName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="customerPhone">Số điện thoại khách hàng:</label>
+          <label type="text" class="form-control" name="customerPhone">{{order.customerPhone}}</label>
+        </div>
+        
+        <div class="input-group">
+          <div style="margin-left: 460px;" (click)="goBack()">
+            <a class="btn btn-flat btn-info" style="color: white;">
+              Quay lại
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-xl-12">
+    <h5 class="mb-3"><b>CHI TIẾT ĐƠN HÀNG</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-borderless mb-0">
+            <thead>
+              <tr class="bg-flat bg-info">
+                <th class="text-center">STT</th>
+                <th class="text-center">Tên hàng</th>
+                <th class="text-center">ĐVT</th>
+                <th class="text-center">Số lượng</th>
+                <th class="text-left">Đơn giá</th>
+                <th class="text-left">Thành tiền</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of order.OrderDetails; let i = index">
+                  <td class="text-center">{{ i + 1 }}</td>
+                  <td class="text-left">{{ item.Products[0].productName }}</td>
+                  <td class="text-center">Cái</td>
+                  <td class="text-center">{{ item.quantity }}</td>
+                  <td class="text-right  ">{{ item.price | number  }} VND</td>
+                  <td class="text-right">{{ item.price * item.quantity | number}} VND</td>
+                </tr>                            
+            </tbody>
+            
+            <tfoot>
+              <tr>
+                <th colspan="5" class="text-left">Tổng cộng:</th>
+                <th class="text-right">{{order.sumprice| number}} VND</th>
+                <th></th>
+              </tr>
+              <tr>
+                <th colspan="5" class="text-left">Giảm giá: {{order.discount*100}} %</th>
+                <th class="text-right"> -{{order.sumprice* order.discount| number}} VND</th>
+                <th></th>
+              </tr>
+              <tr>
+                <th colspan="5" class="text-left" style="color: red;">Thanh toán:</th>
+                <th class="text-right" style="color: red;">{{order.finalprice| number}} VND</th>
+                <th></th>
+              </tr>
+            </tfoot>
+           
+          </table>
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <!-- [ sample-page ] end -->
+</div>
+<app-scroll-to-top></app-scroll-to-top>

@@ -1,0 +1,250 @@
+<div class="row">
+  <div class="col-md-12 col-xl-5">
+    <h5 class="mb-3"><b>DANH SÁCH MẶT HÀNG</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <form >
+          <div class="input-group">
+            <input type="text" name="SearchValue" class="form-control" placeholder="Nhập tên mặt hàng cần tìm"
+            [(ngModel)]="searchValue">
+            <div class="input-group-btn">
+              <button (click)="search(searchCategory, 1)" class="btn btn-flat btn-info" style="margin-left:5px ; height: 50px;" type="submit">
+                <i class="ti ti-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="colum" style="margin-top: 10px; margin-bottom: 10px; ">
+          @for (item of listcategoris; track $index) {
+            <a (click)="search(item._id , 0)"  [class.selected]="searchCategory === item._id">{{item.categoryName}}</a>
+          }     
+        </div>
+
+          <div  class="overflow">
+            <div *ngFor="let item of listproducts" style="background-color:#fff;
+                border:1px solid #ccc; margin:5px 0px 5px 0px; padding:5px;">
+                <input type="hidden"  [(ngModel)]="item._id" name="_id" value="{{item._id}}" />
+                <input type="hidden" [(ngModel)]="item.productName" name="productName" value="{{item.productName}}" />
+                <div class="row">
+                  <div class="col-md-12">
+                    <strong>{{item.productName}}</strong>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <img class="img img-responsive img-bordered" height="100px" width="100px" src="../../../../assets/images/products/{{item.photo}}" alt="NoPhoto">
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="form-group-sm">
+                      <div class="row">
+                        <div class="col-md-7">
+                          <div class="form-group">
+                            <label>Giá bán:</label>
+                            <label class="form-control" type="text" name="price"  >{{item.price | number}} VND</label>
+                          </div>
+                          
+                        </div>
+
+                        <div class="col-md-5">
+                          <div class="form-group">
+                            <label>Số lượng:</label>
+                          <input class="form-control" type="number"  [(ngModel)]="quantities[item._id]" value="1" min="1" name="quantity" 
+                          [ngClass]="{ 'is-invalid':  !quantities[item._id] || quantities[item._id] < 1 }" />
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="quantities[item._id] < 1" class="text-danger">
+                      Số lượng tối thiểu bằng 1
+                     </div>
+                    <div class="form-group-sm" style="margin-top:5px; margin-left: 200px;" >
+                      
+                        <button (click)="AddtoCart(item)" type="submit" class="btn btn-flat btn-info" style="padding-top: 10px;">
+                          <i class="ti ti-shopping-cart" ></i> Thêm
+                        </button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+          </div>
+          
+        
+
+        
+      </div>
+      
+
+      
+    </div>
+
+    <!-- <div class="product dark">
+      <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="...">
+      <div class="product-body">
+        <div class="text-section">
+          <h5 class="product-title">Iphone 14 Pro Max</h5>
+          <label>Số lượng:</label>
+          <input type='number' />
+        </div>
+        <div class="cta-section">
+          <div class="price">$129.00đ</div>
+          <a href="#" class="btn">Buy Now</a>
+        </div>
+      </div>
+    </div> -->
+
+
+
+  </div>
+  <div class="col-md-12 col-xl-7">
+    <h5 class="mb-3"><b>ĐƠN HÀNG</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-borderless mb-0">
+            <thead>
+              <tr class="bg-flat bg-info">
+                <th class="text-center">STT</th>
+                <th class="text-center">Tên hàng</th>
+                <th class="text-center">ĐVT</th>
+                <th class="text-center">Số lượng</th>
+                <th class="text-center">Đơn giá</th>
+                <th class="text-center">Thành tiền</th>
+                <th style="width:40px"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!listProducttoCart || listProducttoCart.length === 0">
+                <td colspan="7" class="text-center"><h3>Giỏ hàng rỗng</h3></td>
+              </tr>
+              
+                <tr *ngFor="let item of listProducttoCart; let i = index">
+                  <td class="text-center">{{ i + 1 }}</td>
+                  <td>{{ findProductName(item.productId) }}</td>
+                  <td class="text-center">Cái</td>
+                  <td class="text-center">{{ item.quantity }}</td>
+                  <td class="text-right">{{ item.price | number  }}</td>
+                  <td class="text-right">{{ item.price * item.quantity | number}}</td>
+                  <td class="text-right">
+                    <a  class="btn btn-xs btn-danger ajax-link"
+                      (click)="removedProduct(item.productId)"
+                      mat-raised-button
+              matTooltip="Xóa mặt hàng"
+              matTooltipClass="searchvoucher"
+                      >
+                      <i class="ti ti-trash"></i>
+                    </a>
+                  </td>
+                </tr>                            
+            </tbody>
+            
+            <tfoot>
+              <tr>
+                <th colspan="5" >Tổng tiền hàng:</th>
+                <th  >{{sumofPrice() |number}}đ </th>
+                <th></th>
+              </tr>
+              @if(voucher && submitvoucher){
+                <tr>
+                  <th colspan="2">Giảm giá:</th>
+                  <th>{{voucher.voucherCode}}</th>
+                  <th colspan="2">{{(voucher.discount)*100}}%</th>
+                  <th>-{{salePrice() | number}}đ</th>
+                  <th>
+                    <a  class="btn btn-xs btn-danger ajax-link" mat-raised-button
+                    matTooltip="Xóa voucher"
+                    matTooltipClass="searchvoucher"
+                    (click)="removedVoucher()"
+                    >
+                    <i class="ti ti-trash"></i>
+                  </a></th>
+                </tr>
+              }
+              
+              <tr>
+                <th colspan="5" >Tổng thanh toán:</th>
+                <th style="color: red;" >{{finalPrice() |number}}đ </th>
+                <th></th>
+              </tr> 
+            </tfoot>
+           
+          </table>
+          <div *ngIf="submitted && listProducttoCart.length ===0  " class="text-danger">
+            Vui lòng thêm hàng vào giỏ trước khi thanh toán.
+           </div>
+        </div>
+
+        <label class="form-label" for="company">Mã giảm giá (Nếu có):</label>
+        <div class="input-group">
+            <input style="width: 200px;" type="text" class="form-control" [(ngModel)]="codevoucher" name="codevoucher"
+            placeholder="Nhập mã giảm giá (nếu có)" />
+              <button (click)="getVoucher(codevoucher)" class="btn btn-flat btn-info" style=" margin-right: 390px ;height: 45px;" type="submit"
+              mat-raised-button
+              matTooltip="Thêm voucher"
+              matTooltipClass="searchvoucher" >
+                <i class="ti ti-arrow-right"></i>
+              </button>
+            <div *ngIf="submitvoucher && message5  " class="text-danger">
+              {{message5}}
+             </div>
+        </div>
+        <br>
+
+
+        
+        <div class="form-group">
+          <label class="form-label" ><h3>THÔNG TIN KHÁCH HÀNG</h3></label><br>
+          <label class="form-label" for="company">Tên khách hàng<i style="color: crimson;">*</i> :</label>
+          <input type="text" class="form-control" [(ngModel)]="customerName" name="customerName"
+            placeholder="Vui lòng nhập tên khách hàng" [ngClass]="{ 'is-invalid':  !customerName|| !validateCustomerName() }" />
+            <div *ngIf=" submitted && !customerName" class="text-danger">
+              Vui lòng nhập tên khách hàng.
+             </div>
+             <div *ngIf="customerName && !validateCustomerName()" class="text-danger">
+              Tên khách hàng không đúng định dạng.
+              
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="company">SDT<i style="color: crimson;">*</i> :</label>
+          <input type="text" class="form-control" [(ngModel)]="customerPhone" name="customerPhone"
+            placeholder="Vui lòng nhập số điện thoại" [ngClass]="{ 'is-invalid':  !customerPhone || !validateCustomerPhone()}" />
+            <div *ngIf="submitted && !customerPhone" class="text-danger">
+              Vui lòng nhập số điện thoại.
+             </div>
+             <div *ngIf="customerPhone && !validateCustomerPhone()" class="text-danger">
+              Số điện thoại không đúng định dạng.
+              
+            </div>    
+        </div>
+        <div class="input-group">
+          <div class="text-right">
+            <a (click)="removedAll()"  class="btn btn-xs btn-danger ajax-link"
+              data-question="Bạn có muốn xóa toàn bộ hàng trong giỏ không?">
+              Xóa giỏ hàng
+            </a>
+          </div>
+          <div (click)="Order(1)" class="text-left" style="margin-left: 322px;">
+            <a  class="btn btn-flat btn-info">
+              Tạm tính
+            </a>
+          </div>
+          
+          <div (click)="Order(0)" class="text-left" style="margin-left: 10px;">
+            <a  class="btn btn-flat btn-info">
+              Thanh toán
+            </a>
+          </div>
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>
+<app-scroll-to-top></app-scroll-to-top>

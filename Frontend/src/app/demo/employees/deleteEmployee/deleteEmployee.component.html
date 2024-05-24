@@ -1,0 +1,58 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>XÓA NHÂN VIÊN</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="employeeName">Tên nhân viên</label>
+          <label type="text" class="form-control" name="employeeName">{{employee.employeeName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="birthDate">Ngày sinh</label>
+          <label type="text" class="form-control" name="birthDate">{{employee.birthDate}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Địa chỉ gmail</label>
+          <label type="text" class="form-control" name="email">{{employee.email}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Số điện thoại</label>
+          <label type="text" class="form-control" name="phone">{{employee.phone}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="address">Địa chỉ</label>
+          <label type="text" class="form-control" name="address">{{employee.address}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="province">Tỉnh/Thành</label>
+          <label type="text" class="form-control" name="province">{{employee.Province[0].provinceName}}</label>
+
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-sm-10">  
+              <img id="photo"  src="../../../../assets/images/employees/{{employee.photo}}" accept="" class="img img-bordered" style="width:200px" />
+          </div>
+      </div>
+        
+      <div class="input-group">
+        <div style="margin-left: 850px;">
+          <a class="btn btn-flat btn-info" style="color: white;"  (click)="goBack()" >
+            Quay lại
+          </a>
+        </div>
+
+        <div style="margin-left: 20px;" >
+          <button type="submit" class="btn btn-xs btn-danger"  (click)="openConfirmDeleteDialog()" >Xác nhận</button>
+        </div>
+      </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>

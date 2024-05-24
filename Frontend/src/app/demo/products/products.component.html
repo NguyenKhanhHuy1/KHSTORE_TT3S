@@ -1,0 +1,114 @@
+<div class="row">
+  
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>DANH SÁCH MẶT HÀNG</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+      
+      <form (ngSubmit)="search()">
+        <div class="row" >
+            <div class="col-sm-3">
+              <div class="input-group">
+                <input name="category" type="text" class="form-control" placeholder="Loại hàng" [(ngModel)]="category" matInput
+                [matAutocomplete]="categoryAuto"  
+                 >
+              </div>
+              <mat-autocomplete #categoryAuto="matAutocomplete" [displayWith]="displayCategoryName" >
+                @for (item of (listCategorys |filterByCategoryName: category); track item) {
+                  <mat-option [value]="item "   >{{item.categoryName}}</mat-option>
+                }
+              </mat-autocomplete>
+              </div>
+              <div class="col-sm-3">
+    
+              <div class="input-group">
+                <input name="supplier" type="text" class="form-control" placeholder="Nhà cung cấp" [(ngModel)]="supplier" matInput
+                [matAutocomplete]="supplierauto"  >
+              </div>
+              <mat-autocomplete #supplierauto="matAutocomplete"  [displayWith]="displaySupplerName" >
+                @for (item of (listSuppliers |filterbysuppliername: supplier); track item) {
+                  <mat-option [value]="item ">{{item.supplierName}}</mat-option>
+                }
+              </mat-autocomplete>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <input style=" height: 43.5px;" name="SearchValue" type="text" class="form-control" placeholder="Nhập tên mặt hàng cần tìm" [(ngModel)]="searchValue">
+                  <div class="input-group-btn">
+              <button class="btn btn-flat btn-info" style="margin-left:5px ; height: 45px;" type="submit" >
+                <i class="ti ti-search"></i>
+              </button>
+            </div>
+            <div class="input-group-btn">
+              <a routerLink="create" class="btn btn-flat btn-info" style="margin-left:5px ; padding-top: 10px;">
+                <i class="fa fa-plus" > </i> Bổ sung
+              </a>
+            </div>
+                </div>
+    
+              </div>
+        </div>
+      </form>
+        <p style="margin:10px 0 10px 0">
+          Có <strong>{{rowCount}}</strong> kết quả trong tổng số <strong>{{page}}</strong> trang
+        </p>
+          
+        <div class="table-responsive">
+          <table class="table table-hover table-borderless mb-0">
+            <thead>
+              <tr>
+                <th >ẢNH MINH HỌA</th>
+                <th>TÊN MẶT HÀNG</th>
+                <th>LOẠI HÀNG</th>
+                <th>NHÀ CUNG CẤP</th>
+                <th>ĐƠN VỊ TÍNH</th>
+                <th>GIÁ</th>
+                <th style="width:150px"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products| paginate: {itemsPerPage: 10, currentPage: p }">
+                <td>
+                  <img src="../../../assets/images/products/{{product.photo}}" style="width:100px" alt="" />
+                </td>
+                <td>{{product.productName}}</td>
+                <td>{{product.Category[0].categoryName}}</td>
+                <td>{{product.Supplier[0].supplierName}}</td>
+                <td>{{product.unit}}</td>
+                <td>
+                  {{product.price | number}} VNĐ
+                </td>
+                <td class="text-right">
+                  <div class="btn-group">
+                      <button   class="btn btn-flat btn-info" [routerLink]="['/Products', product._id]"
+                            mat-raised-button
+                            matTooltip="Sửa"
+                            matTooltipClass="edit">
+                            <i class="ti ti-clipboard" style="color: white;"></i>
+                    </button>
+                    <button  class="btn btn-danger btn-info" [routerLink]="['/Products/delete', product._id]"
+                            mat-raised-button
+                            matTooltip="Xóa"
+                            matTooltipClass="delete">
+                            <i class="ti ti-trash" style="color: white;"></i>
+                    </button>
+
+                  </div>
+                  
+                </td>
+              </tr>
+            
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-center">
+        <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <!-- [ sample-page ] end -->
+</div>
+<app-scroll-to-top></app-scroll-to-top>
+

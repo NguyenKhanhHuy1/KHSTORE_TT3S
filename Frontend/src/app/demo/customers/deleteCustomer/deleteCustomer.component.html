@@ -1,0 +1,52 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3">XÓA THÔNG TIN KHÁCH HÀNG</h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="customerName">Tên khách hàng</label>
+          <label type="text" class="form-control" name="customerName">{{customer.customerName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contactName">Tên giao dịch</label>
+          <label type="text" class="form-control" name="contactName">{{customer.contactName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Điện thoại</label>
+          <label type="text" class="form-control" name="phone">{{customer.phone}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="gmail">Gmail</label>
+          <label type="text" class="form-control" name="gmail">{{customer.email}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="address">Địa chỉ</label>
+          <label type="text" class="form-control" name="address">{{customer.address}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="province">Tỉnh/Thành</label>
+          <label type="text" class="form-control" name="province">{{customer.province}}</label>
+        </div>
+        <div class="input-group">
+          <div class="text-right" (click)="goBack()">
+            <a class="btn btn-flat btn-info" style="color: white;">
+              Quay lại
+            </a>
+          </div>
+
+          <div class="text-left" (click)="openConfirmDeleteDialog()">
+            <a class="btn btn-xs btn-danger" style="color: white;">
+              Xác nhận
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>

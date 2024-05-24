@@ -1,0 +1,85 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>DANH SÁCH NHÀ CUNG CẤP</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <form (ngSubmit)="search()">
+          <div class="input-group">
+            <input name="SearchValue" type="text" class="form-control" placeholder="Nhập nhà cung cấp cần tìm" [(ngModel)]="searchValue">
+            <div class="input-group-btn">
+              <button class="btn btn-flat btn-info" style="margin-left:5px ; height: 50px;" type="submit" >
+                <i class="ti ti-search"></i>
+              </button>
+            </div>
+            <div class="input-group-btn">
+              <a routerLink="create" class="btn btn-flat btn-info" style="margin-left:5px ; height: 50px; padding-top: 10px;">
+                <i class="fa fa-plus" > </i> Bổ sung
+              </a>
+            </div>
+          </div>
+        </form>
+        <p style="margin:10px 0 10px 0">
+          Có <strong>{{rowCount}}</strong> kết quả trong tổng số <strong>{{page}}</strong> trang
+        </p>
+        <div class="table-responsive">
+          <table class="table table-hover table-borderless mb-0">
+            <thead>
+              <tr>
+                <th>TÊN NHÀ CUNG CẤP</th>
+                <th>TÊN GIAO DỊCH</th>
+                <th>ĐIỆN THOẠI</th>
+                <th>GMAIL</th>
+                <th>ĐỊA CHỈ</th>
+                <th>TỈNH/THÀNH</th>
+                <th style="width:150px"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let supplier of suppliers | paginate: {itemsPerPage: 10, currentPage: p }">
+                <td>
+                  {{supplier.supplierName}}
+                </td>
+                <td>{{supplier.contactName}}</td>
+                <td>{{supplier.phone}}</td>
+                <td>
+                  {{supplier.email}}
+                </td>
+              <td>{{supplier.address}}</td>
+                <td>{{supplier.Province[0].provinceName}}</td>
+
+                <td class="text-right">
+                  <div class="btn-group">
+                      <button   class="btn btn-flat btn-info" [routerLink]="['/Suppliers', supplier._id]"
+                            mat-raised-button
+                            matTooltip="Sửa"
+                            matTooltipClass="edit">
+                            <i class="ti ti-clipboard" style="color: white;"></i>
+                    </button>
+                    <button  class="btn btn-danger btn-info" [routerLink]="['/Suppliers/delete', supplier._id]"
+                            mat-raised-button
+                            matTooltip="Xóa"
+                            matTooltipClass="delete">
+                            <i class="ti ti-trash" style="color: white;"></i>
+                    </button>
+
+                  </div>
+                  
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-center">
+      <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+    </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>
+<app-scroll-to-top></app-scroll-to-top>

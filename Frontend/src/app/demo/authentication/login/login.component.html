@@ -1,0 +1,43 @@
+<div class="auth-main">
+  <div class="auth-wrapper v3" style="background-image: url(../../../../assets/images/Remove-bg.ai_1715584959373.png);">
+    <div class="auth-form">
+      <div class="auth-header">
+       
+      </div>
+      <div class="card my-5">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-end mb-4">
+            <h3 class="mb-0"><b>ĐĂNG NHẬP</b></h3>
+            <!-- <a [routerLink]="['/register']" class="link-primary">Don't have an account?</a> -->
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label" for="email">Tên đăng nhập:</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="email" id="email" placeholder="Vui lòng nhập địa chỉ Gmail"
+              />
+              <div *ngIf=" submitted && !email" class="text-danger">
+                Vui lòng nhập địa chỉ gmail
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label" for="password">Mật khẩu</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="password" id="password" placeholder="Vui lòng nhập mật khẩu"  />
+            <div *ngIf=" submitted && !password" class="text-danger">
+              Vui lòng nhập mật khẩu
+          </div>
+          </div>
+        
+          <div class="d-grid mt-4">
+            <div *ngIf=" submitted && message && password && email" class="text-danger">
+              {{message}}
+          </div>
+            <button type="button" class="btn btn-primary" (click)="login()">Đăng nhập</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="auth-footer row">
+
+      </div>
+    </div>
+  </div>
+</div>

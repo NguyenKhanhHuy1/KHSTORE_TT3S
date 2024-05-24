@@ -1,0 +1,70 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3">DANH SÁCH KHÁCH HÀNG</h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <form>
+          <div class="input-group">
+            <!-- <input type="hidden" name="@nameof(Model.PageSize)" value="@Model.PageSize" /> -->
+            <input name="SearchValue" type="text" class="form-control" placeholder="Nhập nội dung tìm kiếm"
+            [(ngModel)]="searchValue">
+
+            <div class="input-group-btn">
+
+              <a routerLink="create" class="btn btn-flat btn-info" style="margin-left:5px ; height: 50px; padding-top: 12px;">
+                <i class="fa fa-plus"> </i> Bổ sung
+              </a>
+            </div>
+          </div>
+        </form>
+        <div class="table-responsive">
+          <table class="table table-hover table-borderless mb-0">
+            <thead>
+              <tr>
+                <th>TÊN KHÁCH HÀNG</th>
+                <th>TÊN GIAO DỊCH</th>
+                <th>ĐIỆN THOẠI</th>
+                <th>GMAIL</th>
+                <th>ĐỊA CHỈ</th>
+                <th>TỈNH/THÀNH</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="customers && customers.length !== 0">
+              <tr *ngFor="let customer of customers|FilterByCustomerName: searchValue | paginate: {itemsPerPage: 10, currentPage: p }">
+                <td>{{ customer.customerName }}</td>
+                <td>{{ customer.contactName }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.province }}</td>
+              
+                <td>
+                  <div class="btn btn-flat btn-info" [routerLink]="['/Customers', customer._id]">
+                    <a class="ti ti-clipboard" style="color: white;">
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div class="btn btn-danger btn-info" [routerLink]="['/Customers/delete', customer._id]">
+                    <a class="ti ti-trash" style="color: white;">
+                    </a>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+      <div class="text-center">
+        <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>

@@ -1,0 +1,8 @@
+.scroll-to-top {
+    position: fixed;
+    transition: all .2s ease-in-out;
+    z-index: 1030;
+    right: 30px;
+    bottom: 160px;
+    opacity: 1;
+  }

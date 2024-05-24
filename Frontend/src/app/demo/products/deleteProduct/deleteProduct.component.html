@@ -1,0 +1,58 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>XÓA MẶT HÀNG</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="productName">Tên mặt hàng:</label>
+          <label type="text" class="form-control" name="productName">{{product.productName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="productDescription">Mô tả:</label>
+          <label type="text" class="form-control" name="productDescription">{{product.productDescription}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="categoryName">Loại hàng:</label>
+          <label type="text" class="form-control" name="categoryName">{{product.Category[0].categoryName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="supplierName">Nhà cung cấp:</label>
+          <label type="text" class="form-control" name="supplierName">{{product.Supplier[0].supplierName}}</label>
+  
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="unit">Đơn vị tính:</label>
+          <label  class="form-control" name="unit">{{product.unit}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="price">Giá:</label>
+          <label type="text" class="form-control" name="price">{{product.price}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="photo">Ảnh minh họa:</label>
+          <div class="col-lg-offset-2 col-sm-10">  
+            
+              <img id="photo"  src="../../../../assets/images/products/{{product.photo}}" accept="" class="img img-bordered" style="width:200px" />        
+          </div>
+      </div>
+        
+      <div class="input-group">
+        <div style="margin-left: 850px;">
+          <a class="btn btn-flat btn-info" style="color: white;" (click)="goBack()">
+            Quay lại
+          </a>
+        </div>
+
+        <div style="margin-left: 20px;">
+          <button type="submit" class="btn btn-xs btn-danger" (click)="openConfirmDeleteDialog()">Xác nhận</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>

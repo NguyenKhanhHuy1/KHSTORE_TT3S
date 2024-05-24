@@ -1,0 +1,16 @@
+.chat {
+    position: fixed;
+    transition: all .2s ease-in-out;
+    z-index: 1030;
+    right: 30px;
+    bottom: 100px;
+  }
+ .supportimg{
+  height: 55px;
+  width: 55px;
+  position: fixed;
+    transition: all .2s ease-in-out;
+    z-index: 1030;
+    right: 28px;
+    bottom: 81px;
+ }

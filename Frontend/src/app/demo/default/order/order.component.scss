@@ -1,0 +1,48 @@
+.overflow {
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.is-invalid {
+    border-color: #dc3545;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+.colum {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style-type: none;
+    padding: 0;
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  } 
+  .colum a {
+    display: block;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
+    width: 95px;
+    
+  }
+  .colum a:hover {
+    background-color: #ddd;
+  }
+
+  .colum a.selected {
+    /* Thiết lập kiểu màu sắc hoặc hiệu ứng khi được chọn */
+    background-color: rgb(19 194 194); /* Ví dụ: Màu nền vàng */
+    color: #ffffff; /* Ví dụ: Màu chữ trắng */
+    font-weight: bold; /* Ví dụ: Chữ in đậm */
+}

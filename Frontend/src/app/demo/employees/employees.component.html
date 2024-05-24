@@ -1,0 +1,79 @@
+<div class="row">
+  <h5 class="mb-3"><b>DANH SÁCH NHÂN VIÊN</b></h5>
+  <div class="col-md-12 col-xl-12">
+    <div class="card tbl-card">
+      <div class="card-body">
+        <form  (ngSubmit)="search()">
+          <div class="input-group">
+            <input name="SearchValue" type="text" class="form-control" placeholder="Nhập tên nhân viên cần tìm" [(ngModel)]="searchValue" >
+            <div class="input-group-btn">
+              <button class="btn btn-flat btn-info" style="margin-left:5px ; height: 50px;" type="submit" >
+                <i class="ti ti-search"></i>
+              </button>
+            </div>
+            <div class="input-group-btn">
+  
+              <a routerLink="create" class="btn btn-flat btn-info" style="margin-left:5px ; height: 50px; padding-top: 12px;">
+                <i class="fa fa-plus"> </i> Bổ sung
+              </a>
+            </div>
+          </div>
+        </form>
+        
+        <p style="margin:10px 0 10px 0">
+          Có <strong>{{rowCount}}</strong> kết quả trong tổng số <strong>{{pageSize}}</strong> trang
+        </p>  
+      </div>
+      
+    </div>
+      
+
+  </div>
+
+
+  <div  class="cards-wrapper" >
+      <div [routerLink]="['/Employees', item._id]" class="carduser green" *ngFor="let item of listEmployees| paginate: {itemsPerPage: 6, currentPage: page } ">
+        <div class="additional">
+          <div class="user-card">
+            <div>
+              <img src="../../../assets/images/employees/{{item.photo}}" height="250px" width="150px" >
+            </div>
+              
+          </div>
+        </div>
+        <div class="general">
+          <h1 >{{item.employeeName}}</h1>
+          <div class="points center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            @if(item.role === 'Employee'){
+              Nhân viên
+            }
+            @else {
+              Quản lí
+            }
+          </div> 
+          <p>Ngày sinh: {{item.birthDate | date: 'dd/MM/yyyy'}}</p>
+          <p>Gmail: {{item.email}}</p>
+          <p>SDT: {{item.phone}}</p>
+          <span class="more">
+
+          </span>
+        </div>
+      </div>
+   
+      
+
+    
+  </div>
+
+  <div class="text-center">
+    <pagination-controls (pageChange)="page = $event" class="float-right"></pagination-controls>
+  </div>
+  
+
+ 
+
+
+
+  <!-- [ sample-page ] end -->
+</div>
+<app-scroll-to-top></app-scroll-to-top>

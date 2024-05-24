@@ -1,0 +1,57 @@
+<!-- [Mobile Media Block end] -->
+<ul class="list-unstyled">
+
+
+  <li class="dropdown pc-h-item header-user-profile" ngbDropdown>
+    <a class="pc-head-link dropdown-toggle arrow-none me-0" ngbDropdownToggle>
+      <img src="../../../../../../assets/images/employees/{{UserData.photo}}" alt="user-image" class="user-avtar" />
+      <span>{{UserData.employeeName}}</span>
+    </a>
+    <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown" ngbDropdownMenu>
+      <div class="dropdown-header">
+        <div class="d-flex mb-1">
+          <div class="flex-shrink-0">
+            <img style="height: 50px; width: 50px;" src="../../../../../../assets/images/employees/{{UserData.photo}}" alt="user-image" class="user-avtar wid-35" />
+          </div>
+          <div  class="flex-grow-1 ms-3">
+            <h6  class="mb-1" style="font-size: 15px;"><b>{{UserData.employeeName}}</b></h6>
+            @if(UserData.role === 'Employee'){
+              <span style="font-size: 15px;">Nhân viên</span>
+            }
+            @else {
+              <span style="font-size: 15px;">Quản lí</span>
+            }
+            
+          </div>
+        </div>
+      </div>
+      <ul ngbNav #nav="ngbNav" class="nav drp-tabs nav-fill nav-tabs">
+        <li ngbNavItem="1">
+          <!-- <a ngbNavLink><i class="ti ti-user"></i> Profile</a> -->
+          <ng-template ngbNavContent>
+            <div>
+              <a [routerLink]="['profile' ,UserData._id]" class="dropdown-item">
+                <i class="ti ti-user"></i>
+                <span>Thông tin cá nhân</span>
+              </a>
+            </div>
+            <div>
+              <a [routerLink]="['changepassword']" class="dropdown-item">
+                <i class="ti ti-edit-circle"></i>
+                <span>Đổi mật khẩu</span>
+              </a>
+            </div>
+            <div>
+              <a (click)="logout()" class="dropdown-item">
+                <i class="ti ti-power"></i>
+                <span>Đăng xuất</span>
+              </a>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
+    </div>
+  </li>
+</ul>
+<!-- [Mobile Media Block end] -->

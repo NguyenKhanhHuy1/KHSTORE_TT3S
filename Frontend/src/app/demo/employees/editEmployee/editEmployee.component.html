@@ -1,0 +1,129 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>CẬP NHẬT THÔNG TIN NHÂN VIÊN</b> </h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <form  enctype="multipart/form-data">
+        <div class="form-group">
+          <label class="form-label" for="employeeName">Tên nhân viên<i style="color: red;">*</i> :</label>
+          <input type="text" class="form-control"  name="employeeName"  [(ngModel)]="employee.employeeName" value="{{employee.employeeName}}" 
+          [ngClass]="{ 'is-invalid':  !employee.employeeName|| !validateEmployeeName() }"  placeholder="Vui lòng nhập tên nhân viên" >
+          <div *ngIf=" !employee.employeeName" class="text-danger">
+            Vui lòng nhập tên nhân viên.
+        </div>
+        <div *ngIf="employee.employeeName && !validateEmployeeName()" class="text-danger">
+          Tên nhân viên không đúng định dạng.
+        </div>
+        </div>
+        <!-- <div class="form-group">
+          <label class="form-label" for="birthDate">Ngày sinh :</label>
+          <input type="text" class="form-control"  name="birthDate"   [(ngModel)]="employee.birthDate" value="{{employee.birthDate}}"  >
+          <div *ngIf=" !employee.birthDate" class="text-danger">
+            Vui lòng nhập ngày sinh.
+        </div>
+        </div> -->
+        <div class="form-group">
+          <label class="form-label" for="birthDate">Ngày sinh :</label> <br>
+          <mat-form-field >
+            <mat-label>Ngày sinh</mat-label>
+            <input matInput [matDatepicker]="dp " placeholder="dd/MM/yyyy" [formControl]="date"  >
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp ></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Địa chỉ gmail<i style="color: red;">*</i> :</label>
+          <input type="text" class="form-control"  name="email" [(ngModel)]="employee.email" value="{{employee.email}}" 
+          [ngClass]="{ 'is-invalid':  !employee.email|| !validateEmail() }"  placeholder="Vui lòng nhập địa chỉ gmail" >
+          <div *ngIf=" !employee.email" class="text-danger">
+            Vui lòng nhập địa chỉ gmail.
+        </div>
+        <div *ngIf="submitted && employee.email && !validateEmail()" class="text-danger">
+          Địa chỉ email không hợp lệ.
+      </div>
+      <div *ngIf="submitted && message" class="text-danger">
+        {{message}}
+      </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Số điện thoại<i style="color: red;">*</i> :</label>
+          <input type="text" class="form-control"  name="phone"  [(ngModel)]="employee.phone" value="{{employee.phone}}" 
+          [ngClass]="{ 'is-invalid':  !employee.phone|| !validateEmployeePhone() }"  placeholder="Vui lòng nhập số điện thoại"  >
+          <div *ngIf=" !employee.phone" class="text-danger">
+            Vui lòng nhập số điện thoại.
+        </div>
+        <div *ngIf="employee.phone && !validateEmployeePhone()" class="text-danger">
+          Số điện thoại không đúng định dạng.
+        </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="address">Địa chỉ :</label>
+          <input type="text" class="form-control"  name="address"[(ngModel)]="employee.address" value="{{employee.address}}"  placeholder="Vui lòng nhập địa chỉ" >
+        
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="province">Tỉnh/Thành<i style="color: red;">*</i> :</label>
+          <select class="form-control" [(ngModel)]="employee.provinceId"  name="province" [ngClass]="{ 'is-invalid':  !employee.provinceId}">
+            <option value="">------Chọn Tỉnh/Thành------</option>
+            <option *ngFor="let item of listprovinces" value="{{item._id}}" selected="item.provinceName === employee.Province[0].provinceName">
+              {{item.provinceName}}</option>
+        </select>
+        <div *ngIf=" !employee.provinceId" class="text-danger">
+          Vui lòng chọn tỉnh/thành.
+      </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="province">Chức vụ :</label>
+          <select class="form-control" [(ngModel)]="employee.role"  name="role">
+            <option value="">------Chọn chức vụ------</option>
+            <option  value="Employee">Nhân viên</option>
+            <option  value="Admin">Quản lí</option>
+        </select>
+        <div *ngIf=" submitted && !employee.role" class="text-danger">
+          Vui lòng chọn chức vụ.
+      </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="isworking">Tình trạng :</label> <br>
+          <input type="checkbox"   name="isworking"[(ngModel)]="employee.isworking" value="{{employee.isworking}}" > Đang làm việc
+
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="photo">Ảnh minh họa :</label>
+          <input type="file" class="form-control" name="photo"  (change)="selectFile($event)"   />
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-sm-10">  
+            @if(preview){
+              <img id="photo"  src="{{preview}}" class="img img-bordered" style="width:200px" accept="" />
+            }
+            @else{
+              <img id="photo"  src="../../../../assets/images/employees/{{employee.photo}}" accept="" class="img img-bordered" style="width:200px" />
+            }
+             
+          </div>
+      </div>
+        
+      <div class="input-group">
+        <div style="margin-left: 850px;"  >
+          <a class="btn btn-flat btn-info" style="color: white;"  (click)="goBack()" >
+            Quay lại
+          </a>
+        </div>
+
+        <div style="margin-left: 20px;">
+          <button type="submit" class="btn btn-xs btn-danger"  (click)="saveEmployee(employee._id)" >Xác nhận</button>
+        </div>
+      </div>
+        
+      </form> 
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>

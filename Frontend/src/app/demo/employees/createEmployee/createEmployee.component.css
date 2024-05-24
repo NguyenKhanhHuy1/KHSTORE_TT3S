@@ -1,0 +1,13 @@
+.is-invalid {
+    border-color: #dc3545;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+.datе-picker-wrapper {
+    padding: 1rem;
+    max-width: 600px;
+}

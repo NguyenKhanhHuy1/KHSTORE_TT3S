@@ -1,0 +1,83 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>DANH SÁCH LOẠI HÀNG</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <form (ngSubmit)="search()">
+          <div class="input-group">
+            <!-- <input type="hidden" name="@nameof(Model.PageSize)" value="@Model.PageSize" /> -->
+
+            <input name="SearchValue" type="text" class="form-control" placeholder="Nhập tên loại hàng cần tìm"
+            [(ngModel)]="searchValue">
+
+            <div class="input-group-btn">
+              <button class="btn btn-flat btn-info" style="margin-left:5px ; height: 50px;" type="submit" >
+                <i class="ti ti-search"></i>
+              </button>
+            </div>
+            <div class="input-group-btn">
+              <a routerLink="create" routerLinkActive="router-link-active" class="btn btn-flat btn-info"
+               style="margin-left:5px ; height: 50px; padding-top: 15px;">
+                 Bổ sung
+              </a>
+            </div>
+          </div>
+        </form>
+        <p style="margin:10px 0 10px 0">
+          Có <strong>{{rowCount}}</strong> kết quả trong tổng số <strong>{{page}}</strong> trang
+        </p>
+        <div class="table-responsive">
+          <table class="table table-hover table-borderless mb-0">
+            <thead>
+              <tr>
+                <th>TÊN LOẠI HÀNG</th>
+                <th>MÔ TẢ</th>
+                <th style="width:150px"></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="categories  
+            && categories.length !== 0">
+              <tr *ngFor="let category of categories | paginate: {itemsPerPage: 10, currentPage: p }">
+                <td>{{category.categoryName}}</td>
+                <td>{{category.Description}}</td>
+
+              
+                <td class="text-right">
+                  <div class="btn-group">
+                      <button   class="btn btn-flat btn-info" [routerLink]="['/Categories', category._id]"
+                            mat-raised-button
+                            matTooltip="Sửa"
+                            matTooltipClass="edit">
+                            <i class="ti ti-clipboard" style="color: white;"></i>
+                    </button>
+                    <button  class="btn btn-danger btn-info" [routerLink]="['/Categories/delete', category._id]"
+                            mat-raised-button
+                            matTooltip="Xóa"
+                            matTooltipClass="delete">
+                            <i class="ti ti-trash" style="color: white;"></i>
+                    </button>
+
+                  </div>
+                  
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+<div class="text-center">
+  <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+      
+</div>
+      
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>
+<app-scroll-to-top></app-scroll-to-top>

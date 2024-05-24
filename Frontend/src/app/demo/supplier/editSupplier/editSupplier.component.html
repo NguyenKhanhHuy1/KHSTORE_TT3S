@@ -1,0 +1,86 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>CẬP NHẬT THÔNG TIN NHÀ CUNG CẤP</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="supplierName">Tên nhà cung cấp<i style="color: red;">*</i> :</label>
+          <input type="text" class="form-control" [(ngModel)]="supplier.supplierName" name="supplierName"
+            placeholder="Vui lòng nhập tên nhà cung cấp" value="{{supplier.supplierName}}"
+             [ngClass]="{ 'is-invalid':  !supplier.supplierName|| !validateSupplierName() }" />
+            <div *ngIf="submitted && !supplier.supplierName" class="text-danger">
+              Vui lòng nhập tên nhà cung cấp.
+             </div>
+             <div *ngIf="supplier.supplierName && !validateSupplierName()" class="text-danger">
+              Tên nhà cung cấp không đúng định dạng.
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactName">Tên giao dịch :</label>
+          <input type="text" class="form-control" id="contactName" [(ngModel)]="supplier.contactName"
+            name="contactName" placeholder="Vui lòng nhập tên giao dịch"  value="{{supplier.contactName}}"
+           />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Điện thoại<i style="color: red;">*</i> :</label>
+          <input type="text" class="form-control" id="phone" [(ngModel)]="supplier.phone" name="phone"
+            placeholder="Vui lòng nhập số điện thoại" value="{{supplier.phone}}" 
+            [ngClass]="{ 'is-invalid':  !supplier.phone|| !validateSupplierPhone() }" />
+            <div *ngIf=" submitted && !supplier.phone" class="text-danger">
+              Vui lòng nhập số điện thoại.
+            </div>
+            <div *ngIf="submitted && supplier.phone && !validateSupplierPhone()" class="text-danger">
+              Số điện thoại không đúng định dạng.
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="gmail">Gmail<i style="color: red;">*</i> :</label>
+          <input type="text" class="form-control" [(ngModel)]="supplier.email" name="email"
+            placeholder="Vui lòng nhập Gmail" value="{{supplier.email}}"  [ngClass]="{ 'is-invalid':  !supplier.email|| !validateEmail() }" />
+            <div *ngIf="submitted && !supplier.email" class="text-danger">
+              Vui lòng nhập địa chỉ email.
+             </div>
+             <div *ngIf="submitted && supplier.email && !validateEmail()" class="text-danger">
+              Địa chỉ email không hợp lệ.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="address">Địa chỉ :</label>
+          <input type="text" class="form-control"  [(ngModel)]="supplier.address" name="address"
+            placeholder="Vui lòng nhập địa chỉ" value="{{supplier.address}}"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="province">Tỉnh/Thành<i style="color: red;">*</i> :</label>
+          <select class="form-control" [(ngModel)]="supplier.provinceId"  name="province" 
+          [ngClass]="{ 'is-invalid':  !supplier.provinceId}">
+            <option value="">------Chọn Tỉnh/Thành------</option>
+            <option *ngFor="let item of listprovinces" value="{{item._id}}" selected="item.provinceName === supplier.Province.provinceName">{{item.provinceName}}</option>
+        </select>
+        <div *ngIf=" submitted && !supplier.provinceId" class="text-danger">
+          Vui lòng chọn tỉnh/thành.
+      </div>
+        </div>
+        <div class="input-group">
+          <div style="margin-left: 850px;">
+            <a class="btn btn-flat btn-info" style="color: white;" (click)="goBack()">
+              Quay lại
+            </a>
+          </div>
+  
+          <div style="margin-left: 20px;">
+            <a class="btn btn-xs btn-danger" style="color: white;" (click)="updateSupplier(supplier._id)">
+              Xác nhận
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>

@@ -1,0 +1,77 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3">CẬP NHẬT THÔNG TIN KHÁCH HÀNG</h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="company">Tên khách hàng</label>
+          <input type="text" class="form-control"  [(ngModel)]="customer.customerName" name="customerName"
+            placeholder="Vui lòng nhập tên khách hàng" value="{{customer.customerName}}"  />
+            <div *ngIf="submitted && !customer.customerName" class="text-danger">
+              Vui lòng nhập tên khách hàng.
+             </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contactName">Tên giao dịch</label>
+          <input type="text" class="form-control" [(ngModel)]="customer.contactName" name="contactName"
+            placeholder="Vui lòng nhập tên giao dịch" value="{{customer.contactName}}"  />
+            <div *ngIf="submitted && !customer.contactName" class="text-danger">
+              Vui lòng nhập tên giao dịch.
+             </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Điện thoại</label>
+          <input type="text" class="form-control"  [(ngModel)]="customer.phone" name="phone"
+            placeholder="Vui lòng nhập số điện thoại" value="{{customer.phone}}"  />
+            <div *ngIf=" submitted && !customer.phone" class="text-danger">
+              Vui lòng nhập số điện thoại.
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Gmail</label>
+          <input type="text" class="form-control" [(ngModel)]="customer.email" name="email"
+            placeholder="Vui lòng nhập Gmail" value="{{customer.email}}" />
+            <div *ngIf="submitted && !customer.email" class="text-danger">
+              Vui lòng nhập địa chỉ email.
+             </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="address">Địa chỉ</label>
+          <input type="text" class="form-control"  [(ngModel)]="customer.address" name="address"
+            placeholder="Vui lòng nhập địa chỉ" value="{{customer.address}}"  />
+            <div *ngIf=" submitted && !customer.address " class="text-danger">
+              Vui lòng nhập địa chỉ.
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="province">Tỉnh/Thành</label>
+            <select class="form-control" [(ngModel)]="customer.province"  name="province">
+              <option value="">------Chọn Tỉnh/Thành------</option>
+              <option *ngFor="let item of listprovinces" value="{{item.provinceName}}" selected="item.provinceName === customer.province">{{item.provinceName}}</option>
+          </select>
+          <div *ngIf=" submitted && !customer.province" class="text-danger">
+            Vui lòng chọn tỉnh/thành.
+        </div>
+        </div>
+        <div class="input-group">
+          <div class="text-left" (click)="goBack()">
+            <a class="btn btn-flat btn-info" style="color: white;">
+              Quay lại
+            </a>
+          </div>
+          <div class="text-left" (click)="updateCustomer(customer._id)">
+            <a class="btn btn-xs btn-danger" style="color: white;">
+              Xác nhận
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>

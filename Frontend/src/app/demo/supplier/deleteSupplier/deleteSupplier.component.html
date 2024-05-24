@@ -1,0 +1,51 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>XÓA THÔNG TIN NHÀ CUNG CẤP</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="supplierName">Tên nhà cung cấp :</label>
+          <label type="text" class="form-control" name="supplierName">{{supplier.supplierName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contactName">Tên giao dịch :</label>
+          <label type="text" class="form-control" name="contactName">{{supplier.contactName}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Điện thoại :</label>
+          <label type="text" class="form-control" name="phone">{{supplier.phone}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="gmail">Gmail :</label>
+          <label type="text" class="form-control" name="gmail">{{supplier.email}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="address">Địa chỉ :</label>
+          <label type="text" class="form-control" name="address">{{supplier.address}}</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="province">Tỉnh/Thành :</label>
+          <label type="text" class="form-control" name="province">{{supplier.Province[0].provinceName}}</label>
+        </div>
+        <div class="input-group">
+          <div style="margin-left: 850px;" (click)="goBack()">
+            <a class="btn btn-flat btn-info" style="color: white;">
+              Quay lại
+            </a>
+          </div>
+          <div style="margin-left: 20px;" (click)="openConfirmDeleteDialog()">
+            <a class="btn btn-xs btn-danger" style="color: white;">
+              Xác nhận
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>
