@@ -10,9 +10,7 @@ import { Router } from '@angular/router';
 export class AdminComponent implements OnInit {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
-    if (token) {
-      this.router.navigate(['/Orders/List']);
-    } else {
+    if (!token) {
       this.router.navigate(['login']);
     }
   }

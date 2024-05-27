@@ -165,15 +165,18 @@ const routes: Routes = [
       },
       {
         path: 'Employees/create',
-        component: CreateEmployeeComponent
+        component: CreateEmployeeComponent,
+        canActivate: [AdminService]
       },
       {
         path: 'Employees/:id',
-        component: EditEmployeeComponent
+        component: EditEmployeeComponent,
+        canActivate: [AdminService]
       },
       {
         path: 'Employees/delete/:id',
-        component: DeleteEmployeeComponent
+        component: DeleteEmployeeComponent,
+        canActivate: [AdminService]
       },
       //change password
       {
