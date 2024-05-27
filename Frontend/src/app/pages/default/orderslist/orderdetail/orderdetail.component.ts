@@ -17,6 +17,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import pdfMake from 'pdfmake/build/pdfMake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { text } from 'stream/consumers';
 
 @Component({
   selector: 'app-orderdetail',
@@ -245,6 +246,83 @@ export class OrderdetailComponent implements OnInit {
           canvas: [{ type: 'line', x1: 0, y1: 5, x2: 520, y2: 5, lineWidth: 0.5, alignment: 'center' }]
         },
         {
+          text: ' '
+        },
+        {
+          text: ' '
+        },
+        {
+          text: ' '
+        },
+        {
+          text: ' '
+        },
+        {
+          columns: [
+            [
+              { text: 'Người bán hàng', alignment: 'center', bold: true },
+              {
+                text: `(chữ kí)`,
+                alignment: 'center',
+                italics: true
+              },
+              {
+                text: ' '
+              },
+              {
+                text: ' '
+              },
+              {
+                text: ' '
+              },
+              {
+                text: ' '
+              },
+              {
+                text: ' '
+              },
+              { text: `${this.order.Employee[0].employeeName}`, alignment: 'center', bold: true }
+              // Thêm thông tin khác nếu cần
+            ],
+            [
+              { text: `Người mua hàng`, alignment: 'center', bold: true },
+              {
+                text: `(chữ kí)`,
+                alignment: 'center',
+                italics: true
+              },
+              {
+                text: ' '
+              },
+              {
+                text: ' '
+              },
+              {
+                text: ' '
+              },
+              {
+                text: ' '
+              },
+              {
+                text: ' '
+              },
+              { text: `${this.order.customerName}`, alignment: 'center', bold: true }
+            ]
+          ]
+        },
+        {
+          text: ' '
+        },
+        {
+          text: ' '
+        },
+        {
+          canvas: [{ type: 'line', x1: 0, y1: 5, x2: 520, y2: 5, lineWidth: 0.5, alignment: 'center' }]
+        },
+        {
+          text: ' '
+        },
+        {
           text: 'Chúc quý khách một ngày vui vẻ',
           fontSize: 10,
           alignment: 'center',
@@ -267,6 +345,7 @@ export class OrderdetailComponent implements OnInit {
     let pdfDoc = pdfMake.createPdf(docDefinition);
     // In PDF
     pdfDoc.print();
+    this.reloadComponent(this.order._id);
   }
   openSnackBar(message: string, action: string): void {
     this.snackBar.open(message, action, {
