@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Angular import
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
@@ -5,6 +6,8 @@ import { Location, LocationStrategy } from '@angular/common';
 // project import
 import { NavigationItems } from '../navigation';
 import { environment } from 'src/environments/environment';
+import { UserSessionService } from 'src/app/services/UserSession/UserSession.service';
+import { Employee } from 'src/app/models/employee';
 
 @Component({
   selector: 'app-nav-content',
@@ -20,18 +23,38 @@ export class NavContentComponent implements OnInit {
   currentApplicationVersion = environment.appVersion;
 
   navigation = NavigationItems;
+  newnavigation = NavigationItems;
+
   windowWidth = window.innerWidth;
 
   // Constructor
   constructor(
     private location: Location,
-    private locationStrategy: LocationStrategy
+    private locationStrategy: LocationStrategy,
+    private usersessionService: UserSessionService
   ) {}
 
   // Life cycle events
+  UserData: Employee;
   ngOnInit() {
+    this.navigation = NavigationItems;
+    console.log(NavigationItems);
+    this.updateNavigation();
+    console.log(this.newnavigation);
     if (this.windowWidth < 1025) {
       (document.querySelector('.coded-navbar') as HTMLDivElement).classList.add('menupos-static');
+    }
+  }
+  updateNavigation() {
+    this.UserData = this.usersessionService.getSession();
+    this.newnavigation = JSON.parse(JSON.stringify(this.navigation));
+    if (this.UserData && this.UserData.role === 'Employee') {
+      this.newnavigation = this.newnavigation.map((item) => {
+        if (item.id === 'elements') {
+          item.children = item.children.filter((child) => child.id !== 'Employees');
+        }
+        return item;
+      });
     }
   }
 

@@ -61,6 +61,44 @@ const getAllOrders = async () => {
     throw new Error(error)
   }
 }
+const Search = async (searchValue, status, start, end) => {
+  try {
+    const matchQuery = {}
+    if (searchValue) {
+      matchQuery.customerName = { $regex: searchValue, $options: 'i' }
+    }
+    if (status) {
+      matchQuery.status = status
+    }
+    if (start && end) {
+      const endOfDay = new Date(end);
+      endOfDay.setDate(endOfDay.getDate() + 1);
+      matchQuery.orderTime = { $gte: new Date(start), $lte: new Date(endOfDay) }; // Truy vấn từ start đến end
+    } else if (end) {
+      const endOfDay = new Date(end);
+      endOfDay.setDate(endOfDay.getDate() + 1);
+      matchQuery.orderTime = { $lte: new Date(endOfDay) }; // Truy vấn từ trước đến end
+    } else if (start) {
+      matchQuery.orderTime = { $gte: new Date(start), $lte: new Date() }; // Truy vấn từ start đến hiện tại
+    } 
+    const allOrders = await GET_DB().collection(ORDER_COLLECTION_NAME).aggregate([
+      {
+        $match: matchQuery
+      },
+      { $lookup: {
+        from: employeeModel.EMPLOYEE_COLLECTION_NAME,
+        localField: 'employeeId',
+        foreignField: '_id',
+        as: 'Employee'
+      } },
+      { $sort: { orderTime: -1 } }
+    ]).toArray()
+    return allOrders
+  } catch (error) {
+    console.error('Error in Search model:', error)
+    throw error
+  }
+}
 const getDetails = async (id) => {
   try {
     // const result = await GET_DB().collection(ORDER_COLLECTION_NAME).findOne({
@@ -136,5 +174,6 @@ export const orderModel = {
   getAllOrders,
   getDetails,
   updateOrder,
-  pushOrderdetailIds
+  pushOrderdetailIds,
+  Search
 }

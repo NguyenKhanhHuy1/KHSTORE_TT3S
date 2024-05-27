@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CUSTOMER_BY_ID_URL, CUSTOMER_URL } from 'src/app/demo/constants/urls';
+import { CUSTOMER_BY_ID_URL, CUSTOMER_URL } from 'src/app/pages/constants/urls';
 import { Customer } from 'src/app/models/customer';
 
 @Injectable({

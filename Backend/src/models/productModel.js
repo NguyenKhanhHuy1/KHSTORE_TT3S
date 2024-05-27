@@ -72,7 +72,7 @@ const getAllProducts = async () => {
     throw new Error(error)
   }
 }
-const Search = async (searchValue, categoryId, supplierId) => {
+const Search = async (searchValue, categoryId, supplierId, soft) => {
   try {
     const matchQuery = {}
 
@@ -85,7 +85,14 @@ const Search = async (searchValue, categoryId, supplierId) => {
     if (supplierId) {
       matchQuery.supplierId = new ObjectId(supplierId)
     }
-
+    const sortQuery = {};
+    if (soft === 'high') {
+      sortQuery.price = -1
+    } else if (soft === 'low') {
+      sortQuery.price = 1
+    } else {
+      sortQuery.productName = 1
+    }
     const allProducts = await GET_DB().collection(PRODUCT_COLLECTION_NAME).aggregate([
       {
         $match: matchQuery
@@ -103,7 +110,7 @@ const Search = async (searchValue, categoryId, supplierId) => {
         as: 'Supplier'
       } },
       {
-        $sort: { productName: 1 }
+        $sort: sortQuery
       }
     ]).toArray()
     return allProducts

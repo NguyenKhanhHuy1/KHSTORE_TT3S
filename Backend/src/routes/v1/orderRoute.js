@@ -12,6 +12,7 @@ Router.route('/')
   .get(orderController.getAllOrders)
   .post( orderController.createNew)
 
+Router.route('/search').get(orderController.Search)
 
 Router.route('/:id')
   .get(orderController.getDetails)

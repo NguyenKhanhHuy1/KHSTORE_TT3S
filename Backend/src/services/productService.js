@@ -14,9 +14,9 @@ const getAllProducts = async () => {
     throw error
   }
 }
-const Search = async (searchValue, categoryId, supplierId) => {
+const Search = async (searchValue, categoryId, supplierId, soft) => {
   try {
-    const allProducts = await productModel.Search(searchValue, categoryId, supplierId);
+    const allProducts = await productModel.Search(searchValue, categoryId, supplierId, soft);
     return allProducts;
   } catch (error) {
     console.error('Error in Search service:', error);

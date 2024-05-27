@@ -17,8 +17,9 @@ const Search = async (req, res, next) => {
     const searchValue = req.query.searchValue;
     const categoryId = req.query.categoryId;
     const supplierId = req.query.supplierId;
+    const soft = req.query.soft;
 
-    const allProducts = await productService.Search(searchValue, categoryId, supplierId);
+    const allProducts = await productService.Search(searchValue, categoryId, supplierId,soft);
     res.status(StatusCodes.OK).json(allProducts);
   } catch (error) {
     console.error('Error in Search controller:', error);

@@ -66,14 +66,6 @@ export const NavigationItems: NavigationItem[] = [
         url: '/Suppliers',
         icon: 'ti ti-briefcase'
       },
-      // {
-      //   id: 'Customers',
-      //   title: 'Khách hàng',
-      //   type: 'item',
-      //   classes: 'nav-item',
-      //   url: '/Customers'
-      //   // icon: 'ti ti-hierarchy-2'
-      // },
       {
         id: 'Products',
         title: 'Mặt hàng',

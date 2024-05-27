@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SEARCH_CATEGORY_URL, CATEGORY_URL, CATEGORY_BY_ID_URL } from 'src/app/demo/constants/urls';
+import { SEARCH_CATEGORY_URL, CATEGORY_URL, CATEGORY_BY_ID_URL } from 'src/app/pages/constants/urls';
 import { Category } from 'src/app/models/category';
 
 @Injectable({

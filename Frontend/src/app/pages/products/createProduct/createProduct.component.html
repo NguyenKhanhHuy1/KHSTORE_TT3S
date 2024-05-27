@@ -1,0 +1,88 @@
+<div class="row">
+
+  <div class="col-md-12 col-xl-11">
+    <h5 class="mb-3"><b>THÊM MẶT HÀNG MỚI</b></h5>
+    <div class="card tbl-card">
+      <div class="card-body">
+        <form  enctype="multipart/form-data">
+        <div class="form-group">
+          <label class="form-label" for="ProductName">Tên mặt hàng<i style="color: red;">*</i> :</label>
+          <input type="text" class="form-control" name="productName" [(ngModel)]="product.productName"  placeholder="Vui lòng nhập tên mặt hàng"
+          [ngClass]="{ 'is-invalid':  !product.productName }">
+          <div *ngIf=" submitted && !product.productName " class="text-danger">
+            Vui lòng nhập tên mặt hàng.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="productDescription">Mô tả :</label>
+          <input type="text" class="form-control" name="productDescription" [(ngModel)]="product.productDescription"  placeholder="Vui lòng nhập mô tả" >
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="CategoryID">Loại hàng<i style="color: red;">*</i> :</label>
+          <select class="form-control" name="categoryId" [(ngModel)]="product.categoryId" 
+          [ngClass]="{ 'is-invalid':  !product.categoryId }" >
+              <option value="">------Chọn loại hàng------</option>
+              <option *ngFor="let item of listCategorys" value="{{item._id}}">{{item.categoryName}}</option>
+          </select>
+          <div *ngIf=" submitted && !product.categoryId " class="text-danger">
+            Vui lòng chọn loại hàng.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="supplierId">Nhà cung cấp<i style="color: red;">*</i> :</label>
+          <select class="form-control" name="supplierId" [(ngModel)]="product.supplierId" 
+          [ngClass]="{ 'is-invalid':  !product.supplierId }">
+              <option value="">------Chọn nhà cung cấp------</option>
+              <option *ngFor="let item of listSuppliers" value="{{item._id}}">{{item.supplierName}}</option>
+          </select>
+          <div *ngIf=" submitted && !product.supplierId " class="text-danger">
+            Vui lòng chọn nhà cung cấp.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="unit">Đơn vị tính :</label>
+          <input type="text" class="form-control" name="unit" [(ngModel)]="product.unit">
+          <div *ngIf=" submitted && !product.unit " class="text-danger">
+            Vui lòng nhập đơn vị tính.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="price">Giá<i style="color: red;">*</i> :</label>
+          <input type="text" class="form-control"  [ngModel]="formattedPrice" (ngModelChange)="formatPrice($event)" name="price"   
+          [ngClass]="{ 'is-invalid':  !product.price || !validatePrice() }"  >
+          <div *ngIf=" submitted && !formattedPrice" class="text-danger">
+            Vui lòng nhập giá.
+           </div>
+           <div *ngIf="formattedPrice && !validatePrice() " class="text-danger">
+            Giá không đúng định dạng
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="Photo">Ảnh minh họa :</label>
+          <input type="file" class="form-control" name="Photo" (change)="selectFile($event)"   />
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-sm-10">     
+              <img id="Photo" src="{{preview}}" class="img img-bordered" style="width:200px" />
+          </div>
+      </div>
+        
+      <div class="input-group"><div style="margin-left: 850px;">
+        <a class="btn btn-flat btn-info" style="color: white;" (click)="goBack()">
+          Quay lại
+        </a>
+      </div>
+
+      <div style="margin-left: 20px;">
+        <button type="submit" class="btn btn-xs btn-danger"  (click)="saveProduct()" >Xác nhận</button>
+      </div></div>
+      
+      </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- [ sample-page ] end -->
+</div>

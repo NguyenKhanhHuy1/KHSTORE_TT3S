@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SEARCH_SUPPLIER_URL, SUPPLIER_BY_ID_URL, SUPPLIER_URL } from 'src/app/demo/constants/urls';
+import { SEARCH_SUPPLIER_URL, SUPPLIER_BY_ID_URL, SUPPLIER_URL } from 'src/app/pages/constants/urls';
 import { Supplier } from 'src/app/models/supplier';
 
 @Injectable({

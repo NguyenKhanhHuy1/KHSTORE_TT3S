@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SEARCH_PRODUCT_URL, PRODUCT_URL, PRODUCT_BY_ID_URL } from 'src/app/demo/constants/urls';
+import { SEARCH_PRODUCT_URL, PRODUCT_URL, PRODUCT_BY_ID_URL } from 'src/app/pages/constants/urls';
 import { Product } from 'src/app/models/product';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ProductService {
     console.log(ProductsList);
     return ProductsList;
   }
-  search(searchValue: string, categoryId: string, supplierId: string): Observable<Product[]> {
+  search(searchValue: string, categoryId: string, supplierId: string, soft: string): Observable<Product[]> {
     let url = `${SEARCH_PRODUCT_URL}?`;
     if (searchValue) {
       url += `searchValue=${searchValue}&`;
@@ -27,6 +27,9 @@ export class ProductService {
     }
     if (supplierId) {
       url += `supplierId=${supplierId}&`;
+    }
+    if (soft) {
+      url += `soft=${soft}&`;
     }
     url = url.slice(0, -1); // Loại bỏ ký tự & cuối cùng nếu có
     return this.http.get<Product[]>(url);

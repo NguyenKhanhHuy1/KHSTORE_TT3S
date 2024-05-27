@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ORDERDETAIL_URL } from 'src/app/demo/constants/urls';
+import { ORDERDETAIL_URL } from 'src/app/pages/constants/urls';
 
 @Injectable({
   providedIn: 'root'

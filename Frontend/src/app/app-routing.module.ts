@@ -5,35 +5,36 @@ import { RouterModule, Routes } from '@angular/router';
 // Project import
 import { AdminComponent } from './theme/layouts/admin/admin.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
-import CustomerComponent from './demo/customers/customers.component';
-import { EditCustomerComponent } from './demo/customers/editCustomer/editCustomer.component';
-import { CreateCustomerComponent } from './demo/customers/createCustomer/createCustomer.component';
-import { DeleteCustomerComponent } from './demo/customers/deleteCustomer/deleteCustomer.component';
-import CategoryComponent from './demo/categories/categories.component';
-import { CreateCategoryComponent } from './demo/categories/createCategory/createCategory.component';
-import { EditCategoryComponent } from './demo/categories/editCategory/editCategory.component';
-import { DeleteCategoryComponent } from './demo/categories/deleteCategory/deleteCategory.component';
-import SupplierComponent from './demo/supplier/supplier.component';
-import { CreateSupplierComponent } from './demo/supplier/createSupplier/createSupplier.component';
-import { EditSupplierComponent } from './demo/supplier/editSupplier/editSupplier.component';
-import { DeleteSupplierComponent } from './demo/supplier/deleteSupplier/deleteSupplier.component';
-import OrderlistComponent from './demo/default/orderslist/orderslist.component';
-import ProductComponent from './demo/products/products.component';
-import { CreateProductComponent } from './demo/products/createProduct/createProduct.component';
-import { EditProductComponent } from './demo/products/editProduct/editProduct.component';
-import { DeleteProductComponent } from './demo/products/deleteProduct/deleteProduct.component';
-import EmployeesComponent from './demo/employees/employees.component';
-import { CreateEmployeeComponent } from './demo/employees/createEmployee/createEmployee.component';
-import { EditEmployeeComponent } from './demo/employees/editEmployee/editEmployee.component';
-import { DeleteEmployeeComponent } from './demo/employees/deleteEmployee/deleteEmployee.component';
-import LoginComponent from './demo/authentication/login/login.component';
+import CustomerComponent from './pages/customers/customers.component';
+import { EditCustomerComponent } from './pages/customers/editCustomer/editCustomer.component';
+import { CreateCustomerComponent } from './pages/customers/createCustomer/createCustomer.component';
+import { DeleteCustomerComponent } from './pages/customers/deleteCustomer/deleteCustomer.component';
+import CategoryComponent from './pages/categories/categories.component';
+import { CreateCategoryComponent } from './pages/categories/createCategory/createCategory.component';
+import { EditCategoryComponent } from './pages/categories/editCategory/editCategory.component';
+import { DeleteCategoryComponent } from './pages/categories/deleteCategory/deleteCategory.component';
+import SupplierComponent from './pages/supplier/supplier.component';
+import { CreateSupplierComponent } from './pages/supplier/createSupplier/createSupplier.component';
+import { EditSupplierComponent } from './pages/supplier/editSupplier/editSupplier.component';
+import { DeleteSupplierComponent } from './pages/supplier/deleteSupplier/deleteSupplier.component';
+import OrderlistComponent from './pages/default/orderslist/orderslist.component';
+import ProductComponent from './pages/products/products.component';
+import { CreateProductComponent } from './pages/products/createProduct/createProduct.component';
+import { EditProductComponent } from './pages/products/editProduct/editProduct.component';
+import { DeleteProductComponent } from './pages/products/deleteProduct/deleteProduct.component';
+import EmployeesComponent from './pages/employees/employees.component';
+import { CreateEmployeeComponent } from './pages/employees/createEmployee/createEmployee.component';
+import { EditEmployeeComponent } from './pages/employees/editEmployee/editEmployee.component';
+import { DeleteEmployeeComponent } from './pages/employees/deleteEmployee/deleteEmployee.component';
+import LoginComponent from './pages/authentication/login/login.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
-import { ChangepasswordComponent } from './demo/authentication/changepassword/changepassword.component';
-import OrderComponent from './demo/default/order/order.component';
-import { OrderdetailComponent } from './demo/default/orderslist/orderdetail/orderdetail.component';
+import { ChangepasswordComponent } from './pages/authentication/changepassword/changepassword.component';
+import OrderComponent from './pages/default/order/order.component';
+import { OrderdetailComponent } from './pages/default/orderslist/orderdetail/orderdetail.component';
 import { AdminService } from './services/authentication/Admin.service';
-import { ProfileEmployeeComponent } from './demo/authentication/profileEmployee/profileEmployee.component';
-import { PaymentComponent } from './demo/payment/payment.component';
+import { ProfileEmployeeComponent } from './pages/authentication/profileEmployee/profileEmployee.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import ErrorComponent from './pages/authentication/error/error.component';
 
 const routes: Routes = [
   {
@@ -52,14 +53,15 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'error',
+    component: ErrorComponent
+  },
+  {
     path: '',
     component: AdminComponent,
     canActivate: [AuthenticationService],
     children: [
-      {
-        path: 'payment',
-        component: PaymentComponent
-      },
+      { path: 'reload', component: PaymentComponent },
       {
         path: '',
         redirectTo: '/Orders/List',

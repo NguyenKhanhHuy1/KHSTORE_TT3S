@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SEARCH_EMPLOYEE_URL, CHANGEPASSWORD_URL, LOGIN_URL, EMPLOYEE_URL, EMPLOYEE_BY_ID_URL } from 'src/app/demo/constants/urls';
+import { SEARCH_EMPLOYEE_URL, CHANGEPASSWORD_URL, LOGIN_URL, EMPLOYEE_URL, EMPLOYEE_BY_ID_URL } from 'src/app/pages/constants/urls';
 import { Employee } from 'src/app/models/employee';
 import { JwtHelperService } from '@auth0/angular-jwt';
 

@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PROVINCE_URL, PROVINCE_BY_ID_URL } from 'src/app/demo/constants/urls';
+import { PROVINCE_URL, PROVINCE_BY_ID_URL } from 'src/app/pages/constants/urls';
 import { Province } from 'src/app/models/province';
 
 @Injectable({

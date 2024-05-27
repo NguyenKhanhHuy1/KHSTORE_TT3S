@@ -20,7 +20,8 @@ export class AdminService implements CanActivate {
     if (user.role === 'Admin') {
       return true;
     } else {
-      this.openAlertModal();
+      // this.openAlertModal();
+      this.router.navigate(['error']);
       return false;
     }
   }

@@ -24,6 +24,15 @@ const getAllOrders = async (reqBody) => {
     throw error
   }
 }
+const Search = async (searchValue, status, start, end) => {
+  try {
+    const allProducts = await orderModel.Search(searchValue, status, start, end);
+    return allProducts;
+  } catch (error) {
+    console.error('Error in Search service:', error);
+    throw error;
+  }
+};
 const getDetails = async (id) => {
   try {
     const orderDetail = await orderModel.getDetails(id)
@@ -56,6 +65,7 @@ export const orderService = {
   createNew,
   getAllOrders,
   getDetails,
-  updateOrder
+  updateOrder,
+  Search
 
 }

@@ -12,6 +12,20 @@ const createNew = async (req, res, next) => {
     next(error)
   }
 }
+const Search = async (req, res, next) => {
+  try {
+    const searchValue = req.query.searchValue;
+    const status = req.query.status;
+    const start = req.query.start;
+    const end = req.query.end;
+
+    const allProducts = await orderService.Search(searchValue, status, start,end);
+    res.status(StatusCodes.OK).json(allProducts);
+  } catch (error) {
+    console.error('Error in Search controller:', error);
+    next(error);
+  }
+};
 const getAllOrders = async (req, res, next) => {
   try {
     const allOrders = await orderService.getAllOrders()
@@ -45,6 +59,7 @@ export const orderController = {
   createNew,
   getAllOrders,
   getDetails,
-  updateOrder
+  updateOrder,
+  Search
 
 }
