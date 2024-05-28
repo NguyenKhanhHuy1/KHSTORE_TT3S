@@ -2,7 +2,7 @@
 
 .cards-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;  
   }
 .carduser {
     width: 450px;

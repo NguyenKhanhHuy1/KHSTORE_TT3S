@@ -1,7 +1,26 @@
 .overflow {
     height: 500px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: scroll;  /* Optional: Add a border to better visualize the overflow area */
+    padding: 10px;
+}
+/* Customizing the scrollbar */
+.overflow::-webkit-scrollbar {
+  width: 6px; /* Width of the vertical scrollbar */
+}
+
+.overflow::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.overflow::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.overflow::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
 }
 .is-invalid {
     border-color: #dc3545;
@@ -45,4 +64,21 @@
     background-color: rgb(19 194 194); /* Ví dụ: Màu nền vàng */
     color: #ffffff; /* Ví dụ: Màu chữ trắng */
     font-weight: bold; /* Ví dụ: Chữ in đậm */
+}
+.colum::-webkit-scrollbar {
+  width: 6px; /* Width of the vertical scrollbar */
+}
+
+.colum::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.colum::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.colum::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
 }

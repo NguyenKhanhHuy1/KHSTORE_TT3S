@@ -14,6 +14,7 @@
             </div>
           </div>
         </form>
+        
         <div class="colum" style="margin-top: 10px; margin-bottom: 10px; ">
           @for (item of listcategoris; track $index) {
             <a (click)="search(item._id , 0)"  [class.selected]="searchCategory === item._id">{{item.categoryName}}</a>
@@ -218,20 +219,20 @@
               
             </div>    
         </div>
-        <div class="input-group">
-          <div class="text-right">
-            <a (click)="removedAll()"  class="btn btn-xs btn-danger ajax-link"
+        <div class="input-group justify-content-end">
+          <div class="text-left">
+            <a (click)="removedAll()" class="btn btn-xs btn-danger ajax-link"
               data-question="Bạn có muốn xóa toàn bộ hàng trong giỏ không?">
               Xóa giỏ hàng
             </a>
           </div>
-          <div (click)="Order(1)" class="text-left" style="margin-left: 322px;">
+          <div (click)="Order(1)"  style="margin-left: 10px ;">
             <a  class="btn btn-flat btn-info">
               Tạm tính
             </a>
           </div>
           
-          <div (click)="Order(0)" class="text-left" style="margin-left: 10px;">
+          <div (click)="Order(0)"  style="margin-left: 10px;">
             <a  class="btn btn-flat btn-info">
               Thanh toán
             </a>
