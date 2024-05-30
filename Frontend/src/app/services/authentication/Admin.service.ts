@@ -4,6 +4,7 @@ import { CanActivate, Router } from '@angular/router';
 import { UserSessionService } from '../UserSession/UserSession.service';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Employee } from 'src/app/models/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,10 @@ export class AdminService implements CanActivate {
     private location: Location,
     private modalService: NgbModal
   ) {}
+  user: Employee;
   canActivate(): boolean {
-    const user = this.usersessionService.getSession();
-    if (user.role === 'Admin') {
+    this.user = this.usersessionService.getSession();
+    if (this.user.role === 'Admin') {
       return true;
     } else {
       // this.openAlertModal();

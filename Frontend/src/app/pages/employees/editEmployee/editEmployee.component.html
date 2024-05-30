@@ -86,9 +86,16 @@
         </div>
         <div class="form-group">
           <label class="form-label" for="isworking">Tình trạng :</label> <br>
-          <input type="checkbox"   name="isworking"[(ngModel)]="employee.isworking" value="{{employee.isworking}}" > Đang làm việc
-
-        </div>
+          <div class="radio-group">
+              <label class="radio-label">
+                  <input type="radio" name="isworking" [(ngModel)]="employee.isworking" [value]="true"> Đang làm việc
+              </label>
+              <label style="margin-left: 20px;" class="radio-label">
+                  <input type="radio" name="isworking" [(ngModel)]="employee.isworking" [value]="false"> Đã nghỉ làm
+              </label>
+          </div>
+      </div>
+        
 
         <div class="form-group">
           <label class="form-label" for="photo">Ảnh minh họa :</label>

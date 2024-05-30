@@ -12,11 +12,11 @@ import { EmployeeService } from '../../services/employee/employee.service';
 export default class EmployeesComponent implements OnInit {
   listEmployees: Employee[];
   originalEmployees: Employee[] = [];
-  page: any;
+  page: number;
 
-  searchValue: any;
-  rowCount: any;
-  pageSize: any;
+  searchValue: string;
+  rowCount: number;
+  pageSize: number;
 
   constructor(private EmployeeService: EmployeeService) {}
 

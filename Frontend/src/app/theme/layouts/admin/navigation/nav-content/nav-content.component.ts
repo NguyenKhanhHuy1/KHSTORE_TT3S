@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Angular import
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
